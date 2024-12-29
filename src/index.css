@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a.active hr {
+    display: block;
+}
+
+/* a.active p {
+    font-weight: bold;
+    font-size: large;
+} */
