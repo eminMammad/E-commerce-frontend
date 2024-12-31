@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
 
-        <div className="flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono">
+        <div className="flex flex-row justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono">
 
             {/*here we can put our logo*/}
             <img src={assets.logo} className='w-36' alt="" />
@@ -40,24 +40,6 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/cart" className="flex flex-col items-center gap-1">
                         <p>Cart</p>
-                        <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/login" className="flex flex-col items-center gap-1">
-                        <p>Login</p>
-                        <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/orders" className="flex flex-col items-center gap-1">
-                        <p>Orders</p>
-                        <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/place-order" className="flex flex-col items-center gap-1">
-                        <p>Place Order</p>
                         <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
                     </NavLink>
                 </li>
