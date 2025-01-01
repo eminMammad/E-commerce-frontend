@@ -37,12 +37,6 @@ const Navbar = () => {
                         <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/cart" className="flex flex-col items-center gap-1">
-                        <p>Cart</p>
-                        <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 margin-0 mx-auto hidden' />
-                    </NavLink>
-                </li>
             </ul>
 
             <div className="flex items-center gap-6">
