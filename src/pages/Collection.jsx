@@ -65,10 +65,12 @@ const Collection = () => {
       setFilteredProducts(tempProducts.sort((a, b) => a.price - b.price));
     } else if (sortType === "high-low") {
       setFilteredProducts(tempProducts.sort((a, b) => b.price - a.price));
-    } else {
-      applyFilters();
     }
   };
+
+  // useEffect(() => {
+  //   setFilteredProducts(products);
+  // }, []);
 
   useEffect(() => {
     applyFilters();
@@ -117,7 +119,7 @@ const Collection = () => {
                 className="w-3"
                 value={"Women"}
                 onChange={toggleCategory}
-              />{" "}
+              />
               Women
             </p>
             <p className="flex gap-2">
@@ -131,6 +133,7 @@ const Collection = () => {
             </p>
           </div>
         </div>
+
         {/* Subcategory filter*/}
         <div
           className={`border border-gray-300 pl-5 py-3 my-5 ${
@@ -167,6 +170,10 @@ const Collection = () => {
               Winterwear
             </p>
           </div>
+        </div>
+
+        <div className="flex justify-center border rounded-md border-r-15 border-gray-200">
+          <button className="">Not Functioning Button</button>
         </div>
       </div>
 
