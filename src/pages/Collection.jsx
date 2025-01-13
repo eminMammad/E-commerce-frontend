@@ -5,7 +5,8 @@ import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
-  const { products } = useContext(ShopContext);
+
+  const {products ,search, showSearch} = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -44,6 +45,14 @@ const Collection = () => {
 
   const applyFilters = () => {
     let tempProducts = products.slice();
+
+    if (showSearch && search) {
+      tempProducts = tempProducts.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+
     if (category.length > 0) {
       tempProducts = tempProducts.filter((product) =>
         category.includes(product.category)
@@ -65,14 +74,16 @@ const Collection = () => {
       setFilteredProducts(tempProducts.sort((a, b) => a.price - b.price));
     } else if (sortType === "high-low") {
       setFilteredProducts(tempProducts.sort((a, b) => b.price - a.price));
-    } else {
-      applyFilters();
     }
   };
 
+  // useEffect(() => {
+  //   setFilteredProducts(products);
+  // }, []);
+
   useEffect(() => {
     applyFilters();
-  }, [category, subCategory]);
+  }, [category, subCategory, search, showSearch]);
 
   useEffect(() => {
     sortProducts();
@@ -117,7 +128,7 @@ const Collection = () => {
                 className="w-3"
                 value={"Women"}
                 onChange={toggleCategory}
-              />{" "}
+              />
               Women
             </p>
             <p className="flex gap-2">
@@ -131,6 +142,7 @@ const Collection = () => {
             </p>
           </div>
         </div>
+
         {/* Subcategory filter*/}
         <div
           className={`border border-gray-300 pl-5 py-3 my-5 ${
@@ -167,6 +179,10 @@ const Collection = () => {
               Winterwear
             </p>
           </div>
+        </div>
+
+        <div className="flex justify-center border rounded-md border-r-15 border-gray-200">
+          <button className="">Not Functioning Button</button>
         </div>
       </div>
 
