@@ -3,7 +3,6 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
-import { use } from "react";
 
 const Collection = () => {
   const { products } = useContext(ShopContext);
@@ -11,7 +10,7 @@ const Collection = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType, setSortType] = useState("relevant")
+  const [sortType, setSortType] = useState("relevant");
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
@@ -21,7 +20,9 @@ const Collection = () => {
     }
   };
 
-  {/* Just testing Category update*/}
+  {
+    /* Just testing Category update*/
+  }
   // useEffect(() => {
   //   console.log(category);
   // }, [category]);
@@ -34,19 +35,15 @@ const Collection = () => {
     }
   };
 
-  {/* Just testing subCategory update*/}
+  {
+    /* Just testing subCategory update*/
+  }
   // useEffect(() => {
   //   console.log(subCategory);
   // }, [subCategory]);
 
-
-  useEffect(() => {
-    applyFilters();
-  }, [category, subCategory]);
-
-
   const applyFilters = () => {
-    let tempProducts = filteredProducts.slice();
+    let tempProducts = products.slice();
     if (category.length > 0) {
       tempProducts = tempProducts.filter((product) =>
         category.includes(product.category)
@@ -60,12 +57,7 @@ const Collection = () => {
     }
 
     setFilteredProducts(tempProducts);
-  }
-
-  useEffect(() => {
-    sortProducts();
-  }, [sortType]);
-
+  };
 
   const sortProducts = () => {
     let tempProducts = filteredProducts.slice();
@@ -76,9 +68,15 @@ const Collection = () => {
     } else {
       applyFilters();
     }
+  };
 
-  }
+  useEffect(() => {
+    applyFilters();
+  }, [category, subCategory]);
 
+  useEffect(() => {
+    sortProducts();
+  }, [sortType]);
 
   return (
     <div className="flex flex-col sm:flex-row sm:gap-10 pt-10 border-t">
@@ -176,7 +174,10 @@ const Collection = () => {
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title text1={"ALL"} text2={"Collections"} />
           {/* Product sort*/}
-          <select className="border-2 border-gray-300 text-sm px-2 text-right" onChange={(e) => setSortType(e.target.value)}>
+          <select
+            className="border-2 border-gray-300 text-sm px-2 text-right"
+            onChange={(e) => setSortType(e.target.value)}
+          >
             <option value="relevant" className="text-center p-0">
               Sort by: Relevance
             </option>
