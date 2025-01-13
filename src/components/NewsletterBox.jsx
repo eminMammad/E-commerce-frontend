@@ -4,7 +4,7 @@ const NewsletterBox = () => {
 
     const onSubmitHandler = (Event) => {
         Event.preventDefault();
-        console.log(Event.type);
+        // console.log(Event.type);
     }
 
   return (
