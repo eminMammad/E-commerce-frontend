@@ -80,7 +80,7 @@ const ShopContextProvider = (props) => {
 
   const getProductsData = async () => {
     try {
-      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/product/list")
+      const response = await axios.get(backendURL + "/api/product/list")
       // console.log(response.data);
 
       if (response.data.success) {
@@ -104,17 +104,12 @@ const ShopContextProvider = (props) => {
     }
   })
 
-   const updateQuantity = async (itemId, size, quantity) => {
+  const updateQuantity = async (itemId, size, quantity) => {
     let tempCartData = structuredClone(cartItems);
     tempCartData[itemId][size] = quantity;
 
     setCartItems(tempCartData);
   };
-
-useEffect(() => {
-  getProductsData();
-}, [])
-
 
   const value = {
     products,
@@ -128,10 +123,13 @@ useEffect(() => {
     addToCart,
     getCartCount,
     updateQuantity,
+    setCartItems,
     getCartAmount, 
     navigate,
     backendURL,
-    };
+    setToken,
+    token
+  };
 
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
