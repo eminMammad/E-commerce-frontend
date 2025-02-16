@@ -78,26 +78,38 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   }
 
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/product/list")
+      // console.log(response.data);
+
+      if (response.data.success) {
+        setProducts(response.data.products);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(() =>{
+    getProductsData();
+  }, [])
+
+  useEffect( () => {
+    if (!token && localStorage.getItem("token")){
+      setToken(localStorage.getItem("token"));
+    }
+  })
+
    const updateQuantity = async (itemId, size, quantity) => {
     let tempCartData = structuredClone(cartItems);
     tempCartData[itemId][size] = quantity;
 
     setCartItems(tempCartData);
   };
-
-const getProductsData = async () => {
-  try {
-    const response  = await axios.get(backendURL + "/api/product/list")
-    if(response.data.success){
-      setProducts(response.data.products);
-    } else {
-      toast.error(response.data.message);
-    }
-  } catch (error) {
-    console.log(error);
-    toast.error(error.message);
-  }
-}
 
 useEffect(() => {
   getProductsData();
