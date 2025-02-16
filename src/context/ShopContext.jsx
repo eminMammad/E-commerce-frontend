@@ -104,12 +104,17 @@ const ShopContextProvider = (props) => {
     }
   })
 
-  const updateQuantity = async (itemId, size, quantity) => {
+   const updateQuantity = async (itemId, size, quantity) => {
     let tempCartData = structuredClone(cartItems);
     tempCartData[itemId][size] = quantity;
 
     setCartItems(tempCartData);
   };
+
+useEffect(() => {
+  getProductsData();
+}, [])
+
 
   const value = {
     products,
@@ -123,13 +128,10 @@ const ShopContextProvider = (props) => {
     addToCart,
     getCartCount,
     updateQuantity,
-    setCartItems,
     getCartAmount, 
     navigate,
     backendURL,
-    setToken,
-    token
-  };
+    };
 
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
