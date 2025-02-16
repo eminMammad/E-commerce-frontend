@@ -8,7 +8,7 @@ const Login = () => {
     const[currentState, setCurrentState] = useState("Login");
     const {token, setToken, navigate, backendURL} = useContext(ShopContext);
 
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
@@ -16,18 +16,18 @@ const Login = () => {
         e.preventDefault();
         try {
             if (currentState === "Sign Up"){ //Sign Up API or register API
-                const response = await axios.post('/api/users/register', {username, email, password})
+                const response = await axios.post(backendURL + '/api/users/register', {name, email, password})
                 // console.log(response.data);
-                if (response.data.token) {
+                if (response.data.success) {
                     setToken(response.data.token);
                     localStorage.setItem("token", response.data.token);
                 } else {
                     toast.error(response.data.message);
                 }
             } else{ //Login API
-                const response = await axios.post('/api/users/login', {username, password});
+                const response = await axios.post(backendURL + '/api/users/login', {email, password});
                 // console.log(response.data);
-                if (response.data.token) {
+                if (response.data.success) {
                     setToken(response.data.token);
                     localStorage.setItem("token", response.data.token);
                 } else {
@@ -53,8 +53,8 @@ const Login = () => {
                 <p className="prata-regular text-3xl">{currentState}</p>
                 <hr className="border-none h-[1.5px] w-8 bg-gray-800"/>
             </div>
-            { currentState === "Login" ? "" : <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full px-3 py-2 border border-gray-800" placeholder="Email" type="email" required/>}
-            <input onChange={(e) => setUsername(e.target.value)} value={username} className="w-full px-3 py-2 border border-gray-800" placeholder="Name" type="text" required/>
+            { currentState === "Login" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} className="w-full px-3 py-2 border border-gray-800" placeholder="Name" type="text" required/>}
+            <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full px-3 py-2 border border-gray-800" placeholder="Email" type="email" required/>
             <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full px-3 py-2 border border-gray-800" placeholder="Password" type="password" required/>
             <div className="w-full flex justify-between text-sm mt-[8px]">
                 <p className="cursor-pointer">
