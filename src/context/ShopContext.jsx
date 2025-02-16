@@ -35,6 +35,15 @@ const ShopContextProvider = (props) => {
       cartData[itemId][productSize] = 1;
     }
     setCartItems(cartData);
+
+    if (token) {
+      try {
+        await axios.post(backendURL + "/api/cart/add", {itemId, size:productSize}, {headers: {Authorization: token}});
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
   };
 
   // useEffect(() => {
